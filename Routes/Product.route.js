@@ -4,9 +4,21 @@ const router = express.Router()
 const Product = require('../Models/Product.model')
 
 
-router.get('/', (req, res, next) => {
-    res.send("Getting the List of All Products ..... ")
-    // next(new Error("Cannot Get All Products List ..... "))
+router.get('/', async (req, res, next) => {
+    try {
+
+        const results = await Product.find({}, { __v: 0 })
+        res.send(results)
+        
+        // const results = await Product.find( { price: 999 } , {} )
+        // const results = await Product.find({}, { name: 1 , price: 1 , _id: 0 })
+    } 
+    
+    catch (error) {
+
+        console.log(err.message)
+        
+    }
 })
 
 router.post('/', async (req, res, next) => {
@@ -40,9 +52,28 @@ router.post('/', async (req, res, next) => {
 
 })
 
-router.get('/:id', (req, res, next) => {
-    res.send("Getting a Signle Product ..... ")
-    next();
+router.get('/:id', async (req, res, next) => {
+
+    const id = req.params.id
+
+    try {
+        
+        const product = await Product.findOne()
+        // const product = await Product.findById(id)
+        res.send(product)    
+
+    } 
+    
+    catch (error) {
+        
+        console.log(error.message)
+    
+    }
+
+
+
+    // res.send("Getting a Signle Product ..... ")
+    // next();
 })
 
 router.patch('/:id', (req, res, next) => {
