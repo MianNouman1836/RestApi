@@ -21,7 +21,7 @@ GET http://localhost:3000/products/653f8f32bd09a34ee4078cba
 PATCH  http://localhost:3000/products/id
 
 ### Delete Product by Id
-DELETE  http://localhost:3000/products/id
+DELETE  http://localhost:3000/products/653f8c7df16f1ddb39bd6941
 
 #### Error Handling
 GET http://localhost:3000/
