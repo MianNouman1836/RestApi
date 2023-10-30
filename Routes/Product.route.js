@@ -5,8 +5,8 @@ const Product = require('../Models/Product.model')
 
 
 router.get('/', (req, res, next) => {
-    next(new Error("Cannot Get All Products List ..... "))
-    // res.send("Getting the List of All Products ..... ")
+    res.send("Getting the List of All Products ..... ")
+    // next(new Error("Cannot Get All Products List ..... "))
 })
 
 router.post('/', async (req, res, next) => {
