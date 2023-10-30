@@ -1,0 +1,49 @@
+
+### Get All Products
+GET http://localhost:3000/products
+
+### Create a Product
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{ 
+    "name": "iPhone 15",
+    "price": "1099"
+}
+
+
+
+### Get Product by Id
+GET http://localhost:3000/products/id
+
+
+### Update Product by Id
+PATCH  http://localhost:3000/products/id
+
+### Delete Product by Id
+DELETE  http://localhost:3000/products/id
+
+#### Error Handling
+GET http://localhost:3000/
+
+###
+GET http://localhost:3000/test?name=iMac&price=2399
+
+###
+GET http://localhost:3000/test/1234567/iMac
+
+###
+POST http://localhost:3000/test
+Content-Type: application/json
+
+{
+    "name": "iMacPro",
+    "price": 4999
+}
+
+
+###
+POST http://localhost:3000/test
+Content-Type: application/x-www-form-urlencoded
+
+name=iMac&price=4999
