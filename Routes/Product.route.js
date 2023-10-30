@@ -58,8 +58,8 @@ router.get('/:id', async (req, res, next) => {
 
     try {
         
-        const product = await Product.findOne()
-        // const product = await Product.findById(id)
+        const product = await Product.findById(id)
+        // const product = await Product.findOne({ _id: id })
         res.send(product)    
 
     } 
