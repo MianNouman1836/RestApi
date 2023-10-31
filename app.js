@@ -1,5 +1,4 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const createError = require('http-errors')
 
 const app = express()
@@ -7,22 +6,11 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Data Base Connecting
-mongoose.connect('mongodb+srv://cluster0.jkvdgl1.mongodb.net/',
-{
-    dbName: 'RestAPI',
-    user: 'nouman',
-    pass: 'qIGNU1TPQVNKCjRO',
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-
-.then(() => {
-    console.log("MongoDB Connected ...... ")
-})
+// Initialize Data Base
+require('./initDB') ()
 
 app.all('/test', (req, res) => {
-    
+
     console.log(req.body)
     res.send(req.body)
     // console.log(req.params)
@@ -55,5 +43,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(3000, () => {
-    console.log ( "The Server Started on Port : 3000 ..... " )
+    console.log("The Server Started on Port : 3000 ..... ")
 })
