@@ -18,17 +18,20 @@ GET http://localhost:3000/products/653f8f32bd09a34ee4078cba
 
 
 ### Update Product by Id
-PATCH  http://localhost:3000/products/653f8f32bd09a34ee4078cba
+PATCH  http://localhost:3000/products/653f8f32bd09a34ee4078cb
 Content-Type: application/json
 
 {
-    "name": "iPhone 11 Pro Max Gold"
+    "price": 1149
 }
-### Delete Product by Id
-DELETE  http://localhost:3000/products/653f8c7df16f1ddb39bd6941
 
-#### Error Handling
-GET http://localhost:3000/
+
+### Delete Product by Id
+DELETE  http://localhost:3000/products/653f8ce1f16f1ddb39bd694
+
+#### Error Handling 404 not found 
+GET http://localhost:3000/abc_xyz
+
 
 ###
 GET http://localhost:3000/test?name=iMac&price=2399

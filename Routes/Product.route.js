@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const createError = require('http-errors')
+const mongoose = require('mongoose')
+
 
 const Product = require('../Models/Product.model')
 
@@ -21,6 +24,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+// Creating a New Product
 router.post('/', async (req, res, next) => {
     
     try {
@@ -31,7 +35,14 @@ router.post('/', async (req, res, next) => {
     
     } catch (error) {
 
-        console.log(err.message)
+        console.log(error.message)
+
+        if(error.name == 'ValidationError') {
+            next(createError(422, error.message))
+            return
+        }
+
+        next(error)
            
     }
 
@@ -52,6 +63,8 @@ router.post('/', async (req, res, next) => {
 
 })
 
+// Getting a Product By ID
+
 router.get('/:id', async (req, res, next) => {
 
     const id = req.params.id
@@ -60,6 +73,13 @@ router.get('/:id', async (req, res, next) => {
         
         const product = await Product.findById(id)
         // const product = await Product.findOne({ _id: id })
+        
+        if(!product) {
+
+            throw createError(404, "Product Does Not Exist .... ")
+
+        }
+
         res.send(product)    
 
     } 
@@ -67,6 +87,13 @@ router.get('/:id', async (req, res, next) => {
     catch (error) {
         
         console.log(error.message)
+
+        if(error instanceof mongoose.CastError) {
+            next(createError(400, "Invalid Product Id ..... "))
+            return
+        }
+
+        next(error)
     
     }
 
@@ -75,6 +102,8 @@ router.get('/:id', async (req, res, next) => {
     // res.send("Getting a Signle Product ..... ")
     // next();
 })
+
+// Updating a Product By ID
 
 router.patch('/:id', async (req, res, next) => {
     
@@ -85,6 +114,13 @@ router.patch('/:id', async (req, res, next) => {
         const options = { new: true }
 
         const result = await Product.findByIdAndUpdate(id, updates, options)
+        
+        if(!result) {
+
+            throw createError(400, "Product Does not Exist ...... ")
+
+        }
+
         res.send(result)
         
     } 
@@ -92,10 +128,22 @@ router.patch('/:id', async (req, res, next) => {
     catch (error) {
         
         console.log(error.message)
+
+        if(error instanceof mongoose.CastError) {
+
+            return next(createError(400, "Invalid Product Id ...... "))
+
+        }
+
+        next(error)
+
     
     }
 
 })
+
+
+// Deleting a Product By ID
 
 router.delete('/:id', async (req, res, next) => {
 
@@ -105,6 +153,13 @@ router.delete('/:id', async (req, res, next) => {
         
         const result = await Product.findByIdAndDelete(id) 
         console.log(result)
+
+        if(!result) {
+
+            throw createError(404, "Product Does Not Exist .... ")
+
+        }
+
         res.send(result)
 
     } 
@@ -112,6 +167,13 @@ router.delete('/:id', async (req, res, next) => {
     catch (error) {
         
         console.log(error.message)
+
+        if(error instanceof mongoose.CastError) {
+            next(createError(400, "Invalid Product Id ..... "))
+            return
+        }
+
+        next(error)
     
     }
 
