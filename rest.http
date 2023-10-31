@@ -18,8 +18,12 @@ GET http://localhost:3000/products/653f8f32bd09a34ee4078cba
 
 
 ### Update Product by Id
-PATCH  http://localhost:3000/products/id
+PATCH  http://localhost:3000/products/653f8f32bd09a34ee4078cba
+Content-Type: application/json
 
+{
+    "name": "iPhone 11 Pro Max Gold"
+}
 ### Delete Product by Id
 DELETE  http://localhost:3000/products/653f8c7df16f1ddb39bd6941
 
