@@ -7,27 +7,23 @@ POST http://localhost:3000/products
 Content-Type: application/json
 
 { 
-    "name": "iPhone 15",
-    "price": "1099"
+    "name": "iPhone 15 Pro Max",
+    "price": "1699"
 }
 
-
-
 ### Get Product by Id
-GET http://localhost:3000/products/653f8f32bd09a34ee4078cba
-
+GET http://localhost:3000/products/6540e375d95832c878b780ea
 
 ### Update Product by Id
-PATCH  http://localhost:3000/products/653f8f32bd09a34ee4078cb
+PATCH  http://localhost:3000/products/6540e375d95832c878b780ea
 Content-Type: application/json
 
 {
-    "price": 1149
+    "price": 1599
 }
 
-
 ### Delete Product by Id
-DELETE  http://localhost:3000/products/653f8ce1f16f1ddb39bd694
+DELETE  http://localhost:3000/products/6540e375d95832c878b780ea
 
 #### Error Handling 404 not found 
 GET http://localhost:3000/abc_xyz
