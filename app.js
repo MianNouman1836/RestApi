@@ -1,5 +1,6 @@
 const express = require('express')
 const createError = require('http-errors')
+const dotenv = require('dotenv').config()
 
 const app = express()
 
@@ -41,7 +42,8 @@ app.use((err, req, res, next) => {
     })
 })
 
+const PORT = process.env.PORT || 3000
 
-app.listen(3000, () => {
-    console.log("The Server Started on Port : 3000 ..... ")
+app.listen(PORT, () => {
+    console.log("The Server Started on Port : " + PORT + " ...... ")
 })

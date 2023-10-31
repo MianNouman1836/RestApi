@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 module.exports = () => {
 
     // Data Base Connecting
-    mongoose.connect('mongodb+srv://cluster0.jkvdgl1.mongodb.net/',
+    mongoose.connect(process.env.MONGODB_URI,
         {
-            dbName: 'RestAPI',
-            user: 'nouman',
-            pass: 'qIGNU1TPQVNKCjRO',
+            dbName: process.env.MONGODB_NAME,
+            user: process.env.MONGODB_USER,
+            pass: process.env.MONGODB_PASS,
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
